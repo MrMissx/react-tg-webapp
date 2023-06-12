@@ -5,27 +5,30 @@ import { TelegramWebAppContext } from "./context"
 
 export function WebAppProvider({children}: PropsWithChildren): JSX.Element {
   const [WebApp, setWebApp] = useState(window.Telegram?.WebApp)
+  const [isReady, setIsReady] = useState<boolean>(false)
+
   useEffect(() => {
     const script = document.createElement('script')
     script.src = 'https://telegram.org/js/telegram-web-app.js'
-    document.head.appendChild(script)
-    script.addEventListener('load', () => {
+    script.defer = true
+    script.onload = () => {
       window.Telegram.WebApp.ready()
-      setWebApp(window.Telegram.WebApp)
-    })
+      setWebApp(window.Telegram?.WebApp)
+      setIsReady(true)
+    }
+    document.head.appendChild(script)
 
     return () => {
       document.head.removeChild(script)
     }
   }, [])
 
-  // ensure Telegram object is up to date
   useEffect(() => {
     setWebApp(window.Telegram?.WebApp)
   }, [window.Telegram?.WebApp])
 
   return (
-    <TelegramWebAppContext.Provider value={{WebApp}}>
+    <TelegramWebAppContext.Provider value={{WebApp, isReady}}>
       {children}
     </TelegramWebAppContext.Provider>
   );

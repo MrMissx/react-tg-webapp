@@ -18,12 +18,10 @@ export function useHapticFeedback(): HapticFeedbackReturn {
   }, [WebApp])
 
   const notificationOccurred = useCallback((style: NotificationType) => {
-    console.log("notificationOccurred")
     WebApp?.HapticFeedback.notificationOccurred(style)
   }, [WebApp])
 
   const selectionChanged = useCallback(() => {
-    console.log("selectionChanged")
     WebApp?.HapticFeedback.selectionChanged()
   }, [WebApp])
 

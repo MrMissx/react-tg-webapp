@@ -23,6 +23,13 @@ interface MainButtonProps extends Partial<MainButtonParams> {
   leaveProgressActive?: boolean
 }
 
+
+/**
+ * Telegram WebApp Main Button
+ *
+ * Button will only appear on the Telegram WebApp window (not in the browser).
+ * Main button are rendered on the bottom of the screen / WebApp window
+ */
 export function MainButton(props: MainButtonProps) {
   const { WebApp } = useContext(TelegramWebAppContext)
   const MainButton = WebApp?.MainButton

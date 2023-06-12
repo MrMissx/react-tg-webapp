@@ -10,6 +10,12 @@ interface BackButtonProps {
   onClick?: () => void
 }
 
+/**
+ * Telegram WebApp Back Button
+ *
+ * Button will only appear on the Telegram WebApp window (not in the browser).
+ * when on mobile, Button will only appear if the WebApp is expanded.
+ */
 export function BackButton(props: BackButtonProps) {
   const { WebApp } = useContext(TelegramWebAppContext)
   const BackButton = WebApp?.BackButton
