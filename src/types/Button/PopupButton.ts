@@ -13,7 +13,7 @@ export interface PopupButton {
    * - cancel, a button with the localized text “Cancel”,
    * - destructive, a button with a style that indicates a destructive action (e.g. “Remove”, “Delete”, etc.).
    */
-  type?: 'default' | 'ok' | 'close' | 'cancel' | 'destructive'
+  type?: "default" | "ok" | "close" | "cancel" | "destructive"
   /**
    * The text to be displayed on the button, 0-64 characters.
    * Required if type is `default` or `destructive`. Irrelevant for other types.

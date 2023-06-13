@@ -1,10 +1,10 @@
-import { PopupButton } from '..'
+import { PopupButton } from ".."
 
 export interface Popup {
   /**
    * The text to be displayed in the popup title, 0-64 characters.
    */
-  title?: string;
+  title?: string
   /**
    * The message to be displayed in the body of the popup, 1-256 characters.
    */

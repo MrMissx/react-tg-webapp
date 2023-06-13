@@ -1,7 +1,6 @@
-import { Telegram } from './Telegram';
+import { Telegram } from "./Telegram"
 
-export { };
-
+export {}
 
 declare global {
   interface Window {

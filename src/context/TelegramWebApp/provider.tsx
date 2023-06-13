@@ -2,14 +2,13 @@ import { PropsWithChildren, useEffect, useState } from "react"
 
 import { TelegramWebAppContext } from "./context"
 
-
-export function WebAppProvider({children}: PropsWithChildren): JSX.Element {
+export function WebAppProvider({ children }: PropsWithChildren): JSX.Element {
   const [WebApp, setWebApp] = useState(window.Telegram?.WebApp)
   const [isReady, setIsReady] = useState<boolean>(false)
 
   useEffect(() => {
-    const script = document.createElement('script')
-    script.src = 'https://telegram.org/js/telegram-web-app.js'
+    const script = document.createElement("script")
+    script.src = "https://telegram.org/js/telegram-web-app.js"
     script.defer = true
     script.onload = () => {
       window.Telegram.WebApp.ready()
@@ -28,8 +27,8 @@ export function WebAppProvider({children}: PropsWithChildren): JSX.Element {
   }, [window.Telegram?.WebApp])
 
   return (
-    <TelegramWebAppContext.Provider value={{WebApp, isReady}}>
+    <TelegramWebAppContext.Provider value={{ WebApp, isReady }}>
       {children}
     </TelegramWebAppContext.Provider>
-  );
+  )
 }

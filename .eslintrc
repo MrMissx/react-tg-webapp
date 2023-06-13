@@ -1,20 +1,29 @@
 {
+  "root": true,
   "env": {
     "browser": true,
     "es2020": true
   },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "extends": [
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:react-hooks/recommended"
+    "plugin:@typescript-eslint/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
   "plugins": [
-    "react-refresh"
+    "react-refresh",
+    "prettier"
   ],
   "rules": {
     "react-refresh/only-export-components": "warn"

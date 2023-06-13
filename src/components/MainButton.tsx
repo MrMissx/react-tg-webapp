@@ -1,8 +1,7 @@
+import { useCallback, useContext, useEffect } from "react"
 
-import { useCallback, useContext, useEffect } from "react";
-
-import { MainButtonParams } from "../types";
-import { TelegramWebAppContext } from "../context";
+import { MainButtonParams } from "../types"
+import { TelegramWebAppContext } from "../context"
 
 interface MainButtonProps extends Partial<MainButtonParams> {
   /**
@@ -23,7 +22,6 @@ interface MainButtonProps extends Partial<MainButtonParams> {
   leaveProgressActive?: boolean
 }
 
-
 /**
  * Telegram WebApp Main Button
  *
@@ -34,66 +32,69 @@ export function MainButton(props: MainButtonProps) {
   const { WebApp } = useContext(TelegramWebAppContext)
   const MainButton = WebApp?.MainButton
 
-  const setMainButtonParam = useCallback((props: Partial<MainButtonParams>) => {
-    if(!MainButton) return
-    MainButton.setParams(props)
-  }, [MainButton])
+  const setMainButtonParam = useCallback(
+    (props: Partial<MainButtonParams>) => {
+      if (!MainButton) return
+      MainButton.setParams(props)
+    },
+    [MainButton]
+  )
 
   useEffect(() => {
-    setMainButtonParam({text: props.text || "CONTINUE"})
+    setMainButtonParam({ text: props.text || "CONTINUE" })
   }, [setMainButtonParam, props.text])
 
   useEffect(() => {
-    setMainButtonParam({color: props.color || WebApp?.themeParams?.bg_color})
+    setMainButtonParam({ color: props.color || WebApp?.themeParams?.bg_color })
   }, [WebApp, setMainButtonParam, props.color])
 
   useEffect(() => {
-    setMainButtonParam({textColor: props.textColor || WebApp?.themeParams?.text_color})
+    setMainButtonParam({ textColor: props.textColor || WebApp?.themeParams?.text_color })
   }, [WebApp, setMainButtonParam, props.textColor])
 
   useEffect(() => {
-    setMainButtonParam({isVisible: props.isVisible || true})
+    setMainButtonParam({ isVisible: props.isVisible || true })
   }, [WebApp, setMainButtonParam, props.isVisible])
 
   useEffect(() => {
-    setMainButtonParam({isActive: props.isActive || true})
+    setMainButtonParam({ isActive: props.isActive || true })
   }, [WebApp, setMainButtonParam, props.isActive])
 
   useEffect(() => {
     if (!props.onClick) {
-      return;
+      return
     }
 
-    MainButton?.onClick(props.onClick);
+    MainButton?.onClick(props.onClick)
     return () => {
       if (!props.onClick) return
-      MainButton?.offClick(props.onClick);
-    };
-  }, [MainButton, props]);
+      MainButton?.offClick(props.onClick)
+    }
+  }, [MainButton, props])
 
   useEffect(() => {
     if (props.isEnabled === true) {
-      MainButton?.enable();
+      MainButton?.enable()
     } else if (props.isEnabled === false) {
-      MainButton?.disable();
+      MainButton?.disable()
     }
   }, [MainButton, props.isEnabled])
 
   useEffect(() => {
-    if (props.leaveProgressActive) MainButton?.showProgress(true);
+    if (props.leaveProgressActive) MainButton?.showProgress(true)
   }, [MainButton, props.leaveProgressActive])
 
   useEffect(() => {
-    if (props.hideProgress) MainButton?.hideProgress();
+    if (props.hideProgress) MainButton?.hideProgress()
   }, [MainButton, props.hideProgress])
 
   // Render button
   useEffect(() => {
-    MainButton?.show();
+    MainButton?.show()
     return () => {
-      MainButton?.hide();
-    };
-  }, [MainButton]);
+      MainButton?.hide()
+    }
+  }, [MainButton])
 
   return null
 }

@@ -1,2 +1,3 @@
-export * from './useHapticFeedback';
-export * from './useThemeParams';
+export * from "./useHapticFeedback"
+export * from "./useMetadata"
+export * from "./useThemeParams"

@@ -1,4 +1,3 @@
-
 /**
  * Events Available for Web Apps
  * - `themeChanged`: Occurs whenever theme settings are changed in the user's Telegram app (including switching to night mode).
@@ -10,14 +9,14 @@
  * - `qrTextReceived`: Occurs when the QR code scanner catches a code with text data.
  * - `clipboardTextReceived`: Occurrs when the readTextFromClipboard method is called.
  *
-*/
+ */
 export type EventType =
-  'themeChanged'|
-  'viewportChanged' |
-  'mainButtonClicked' |
-  'backButtonClicked' |
-  'settingsButtonClicked' |
-  'invoiceClosed' |
-  'popupClosed' |
-  'qrTextReceived' |
-  'clipboardTextReceived'
+  | "themeChanged"
+  | "viewportChanged"
+  | "mainButtonClicked"
+  | "backButtonClicked"
+  | "settingsButtonClicked"
+  | "invoiceClosed"
+  | "popupClosed"
+  | "qrTextReceived"
+  | "clipboardTextReceived"

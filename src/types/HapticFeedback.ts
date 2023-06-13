@@ -1,6 +1,5 @@
-export type ImpactStyle = "light" | "medium" | "heavy" | "rigid" | "soft";
-export type NotificationType = "success" | "warning" | "error";
-
+export type ImpactStyle = "light" | "medium" | "heavy" | "rigid" | "soft"
+export type NotificationType = "success" | "warning" | "error"
 
 export interface HapticFeedback {
   /**
@@ -8,15 +7,15 @@ export interface HapticFeedback {
    *
    * @param style
    */
-  impactOccurred(style: ImpactStyle): void;
+  impactOccurred(style: ImpactStyle): void
   /**
    * A method tells that a task or action has succeeded, failed, or produced a warning.
    *
    * @param type
    */
-  notificationOccurred(type: NotificationType): void;
+  notificationOccurred(type: NotificationType): void
   /**
    * A method tells that the user has changed a selection. The Telegram app may play the appropriate haptics.
    */
-  selectionChanged(): void;
+  selectionChanged(): void
 }

@@ -105,6 +105,10 @@ export default function App() {
 
 ## Hooks
 
+### useMetadata()
+
+A hook for getting the Web App metadata.
+
 ### useSendData()
 
 A hook for sending data to the bot.
