@@ -1,9 +1,10 @@
 import { PropsWithChildren, useEffect, useState } from "react"
 
 import { TelegramWebAppContext } from "./context"
+import { WebApp as WebAppType } from "../../types"
 
 export function WebAppProvider({ children }: PropsWithChildren): JSX.Element {
-  const [WebApp, setWebApp] = useState(window.Telegram?.WebApp)
+  const [WebApp, setWebApp] = useState<WebAppType>({} as WebAppType)
   const [isReady, setIsReady] = useState<boolean>(false)
 
   useEffect(() => {
@@ -24,7 +25,7 @@ export function WebAppProvider({ children }: PropsWithChildren): JSX.Element {
 
   useEffect(() => {
     setWebApp(window.Telegram?.WebApp)
-  }, [window.Telegram?.WebApp])
+  }, [window?.Telegram?.WebApp])
 
   return (
     <TelegramWebAppContext.Provider value={{ WebApp, isReady }}>
