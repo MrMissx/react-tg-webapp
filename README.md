@@ -4,20 +4,20 @@ React wrapper for [Telegram Web Apps](https://core.telegram.org/bots/webapps).
 
 > This project is in early development stage. Breaking change may happen at any time.
 
-
 ## Installation
 
 ```bash
 yarn add react-tg-webapp
 ```
 
-
 # Usage
+
+## With React Context
 
 React Telegram Web App is a React Context Provider. This will only provide `Telegram` object to the children components.
 
 ```jsx
-import { WebAppProvider } from 'react-tg-webapp'
+import { WebAppProvider } from "react-tg-webapp"
 
 export default function App() {
   return (
@@ -31,15 +31,15 @@ export default function App() {
 Then you can use `Telegram.WebApp` object in any children components.
 
 ```jsx
-import { useContext } from 'react'
-import { TelegramWebAppContext, MainButton } from 'react-tg-webapp'
+import { useContext } from "react"
+import { TelegramWebAppContext, MainButton } from "react-tg-webapp"
 
-export default function App() {
+export default function Children() {
   const { WebApp, isReady } = useContext(TelegramWebAppContext)
 
   return (
     <div>
-      <h1>WebApp is {isReady ? 'ready' : 'not ready'}</h1>
+      <h1>WebApp is {isReady ? "ready" : "not ready"}</h1>
       <MainButton
         color="#000"
         text="Hello World"
@@ -53,6 +53,37 @@ export default function App() {
 }
 ```
 
+## With HOC
+
+The package also provides a HOC that under the hood also uses `WebAppProvider` context provider.
+With this HOC, you can use `Telegram.WebApp` object in any wrapped component without needing it to put inside a `WebAppProvider` children.
+
+```jsx
+import { useContext } from "react"
+import { TelegramWebAppContext, withTelegramWebApp, MainButton } from "react-tg-webapp"
+
+function App() {
+  const { WebApp, isReady } = useContext(TelegramWebAppContext)
+
+  return (
+    <div>
+      <h1>WebApp is {isReady ? "ready" : "not ready"}</h1>
+      <MainButton
+        color="#000"
+        text="Hello World"
+        textColor="#fff"
+        onClick={() => {
+          console.log("Main button clicked")
+        }}
+      />
+    </div>
+  )
+}
+
+const AppWithWebApp = withTelegramWebApp(App)
+export default AppWithWebApp
+```
+
 ## Components
 
 Telegram Web App components will not render anything in the browser. It will only render the component in the Telegram interface.
@@ -64,7 +95,7 @@ A component for displaying a button at the bottom of the web app in the Telegram
 [Refer to](https://core.telegram.org/bots/webapps#mainbutton)
 
 ```jsx
-import { MainButton } from 'react-tg-webapp'
+import { MainButton } from "react-tg-webapp"
 
 export default function App() {
   return (
@@ -87,7 +118,7 @@ A component for displaying a back button at the header of the web app in the Tel
 [Refer to](https://core.telegram.org/bots/webapps#backbutton)
 
 ```jsx
-import { BackButton } from 'react-tg-webapp'
+import { BackButton } from "react-tg-webapp"
 
 export default function App() {
   return (
@@ -101,7 +132,6 @@ export default function App() {
 ```
 
 ### PopupButton
-
 
 ## Hooks
 
@@ -121,11 +151,8 @@ A hook for getting theme parameters from the Telegram interface.
 
 ### usePopupParams()
 
-
 ### useScanQrPopupParams()
-
 
 ### useHapticFeedback()
 
 A hook for sending a haptic feedback to the Telegram Client.
-
