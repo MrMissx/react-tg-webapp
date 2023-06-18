@@ -159,7 +159,7 @@ export interface WebApp {
    *
    * @param params
    */
-  showPopup(params: any): any
+  showPopup(params: any, callback?: (id: string) => void): any
   /**
    * A method that shows message in a simple alert with a 'Close' button.
    * If an optional callback parameter was passed, the callback function will be called when the popup is closed.

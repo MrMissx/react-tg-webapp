@@ -131,8 +131,6 @@ export default function App() {
 }
 ```
 
-### PopupButton
-
 ## Hooks
 
 ### useMetadata()
@@ -145,11 +143,36 @@ A hook for sending data to the bot.
 
 > This mehtod is only available for Web Apps launched via a [Keyboard Button](https://core.telegram.org/bots/webapps#keyboard-button-web-apps)
 
+### usePopup()
+
+A hook for opening a popup in the Telegram interface.
+
+```jsx
+function App() {
+  const { WebApp } = useContext(TelegramWebAppContext)
+  const { showPopup } = usePopup()
+
+  const handleClose = async () => {
+    const id = await showPopup({
+      title: "WebApp",
+      message: "Are you sure you want to close the app?",
+      buttons: [
+        { id: "1", text: "cancel", type: "cancel" },
+        { id: "2", text: "Close", type: "destructive" },
+      ],
+    })
+    if (id === "2") {
+      WebApp.close()
+    }
+  }
+
+  return <BackButton onClick={handleClose} />
+}
+```
+
 ### useThemeParams()
 
 A hook for getting theme parameters from the Telegram interface.
-
-### usePopupParams()
 
 ### useScanQrPopupParams()
 

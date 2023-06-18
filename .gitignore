@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# dev files
+index.html
+src/App.tsx
+src/main.tsx
