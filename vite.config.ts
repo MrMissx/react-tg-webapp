@@ -1,26 +1,28 @@
-import { defineConfig } from 'vite'
-import { resolve } from 'node:path'
-import react from '@vitejs/plugin-react-swc'
-import dts from 'vite-plugin-dts';
-
+import { defineConfig } from "vite"
+import react from "@vitejs/plugin-react-swc"
+import dts from "vite-plugin-dts"
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), dts({insertTypesEntry: true, tsConfigFilePath: './tsconfig.json'})],
+  plugins: [react(), dts({ insertTypesEntry: true, tsConfigFilePath: "./tsconfig.json" })],
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
-      name: 'react-tg-webapp',
+      entry: "src/index.ts",
+      name: "react-tg-webapp",
     },
-    outDir: 'dist',
+    target: "esnext",
+    outDir: "dist",
     rollupOptions: {
-      external: ['react', 'react-dom'],
+      treeshake: true,
+      external: ["react", "react-dom"],
       output: {
+        format: "esm",
+        sourcemap: true,
         globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
-        }
-      }
+          react: "React",
+          "react-dom": "ReactDOM",
+        },
+      },
     },
   },
 })

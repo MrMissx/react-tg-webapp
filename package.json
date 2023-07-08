@@ -1,6 +1,6 @@
 {
   "name": "react-tg-webapp",
-  "version": "0.0.1-dev6",
+  "version": "0.1.0",
   "author": {
     "name": "Gaung Ramadhan",
     "email": "hi@mrmiss.my.id"
@@ -22,7 +22,7 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "rm -rf dist && tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "clean": "rm -rf dist"
